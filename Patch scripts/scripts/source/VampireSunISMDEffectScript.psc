@@ -28,6 +28,8 @@ Float property SunDamageTime Auto
 Float Property HowMuchDamage Auto
 Float Property SunDamageLightLevel Auto
 
+Float BVShadowLL = 120.0
+
 float Function GetCurrentHourOfDay() 
  
 	SunDamageTime = Utility.GetCurrentGameTime()
@@ -96,10 +98,12 @@ EndEvent
 Event OnUpdate()
 
 		SunDamageLightLevel = Game.GetPlayer().GetLightLevel()
-
-		If SunDamageLightLevel > 50 && SunDamageLightLevel <= ShadowLightLevel.GetValue()
+		
+		BVShadowLL = ShadowLightLevel.GetValue()
+		
+		If SunDamageLightLevel > 50 && SunDamageLightLevel <= BVShadowLL
 			;HowMuchDamage = 1
-		ElseIf SunDamageLightLevel > ShadowLightLevel.GetValue()
+		ElseIf SunDamageLightLevel > BVShadowLL
 			HowMuchDamage = 2
 		EndIf
 		
@@ -107,12 +111,12 @@ Event OnUpdate()
 	If 	(SunDamageTime >= 6 && SunDamageTime <= 19)
 
 		If (VampireLightLevelPenalties.GetValue() == 0)
-			If SunDamageLightLevel > (ShadowLightLevel.GetValue() + 40) ;100
+			If SunDamageLightLevel > (BVShadowLL + 40) ;100
 				VampireLightLevel.SetValue(1)
 				If Game.GetPlayer().GetRace() == DLC1VampireBeastRace
 					DLC1RevertForm.Cast(Game.GetPlayer(), Game.GetPlayer())
 				EndIf
-			ElseIf SunDamageLightLevel <= (ShadowLightLevel.GetValue() + 40) ;100
+			ElseIf SunDamageLightLevel <= (BVShadowLL + 40) ;100
 				VampireLightLevel.SetValue(0)
 			EndIf
 		Else
@@ -121,7 +125,7 @@ Event OnUpdate()
 			
 		If (VampirismLevel == 5 && VampireSunDamage.GetValue() == 10000)
 			;VampireSunlightISMD04.applyCrossFade(2.0)
-			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > ShadowLightLevel.GetValue()
+			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > BVShadowLL
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun10)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun09)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun08)
@@ -145,7 +149,7 @@ Event OnUpdate()
 			
 		If (VampirismLevel == 5 && VampireSunDamage.GetValue() == 20000)
 			;VampireSunlightISMD04.applyCrossFade(2.0)
-			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > ShadowLightLevel.GetValue()	
+			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > BVShadowLL	
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun10)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun09)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun08)
@@ -171,7 +175,7 @@ Event OnUpdate()
 		
 		If (VampirismLevel == 4 &&  VampireSunDamage.GetValue() == 10000)
 			;VampireSunlightISMD04.applyCrossFade(2.0)
-			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > ShadowLightLevel.GetValue()	
+			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > BVShadowLL	
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun10)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun09)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun08)
@@ -195,7 +199,7 @@ Event OnUpdate()
 			
 		If (VampirismLevel == 4 && VampireSunDamage.GetValue() == 20000)
 			;VampireSunlightISMD04.applyCrossFade(2.0)
-			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > ShadowLightLevel.GetValue()	
+			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > BVShadowLL	
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun10)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun09)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun08)
@@ -221,7 +225,7 @@ Event OnUpdate()
 				
 		If (VampirismLevel == 3 && VampireSunDamage.GetValue() == 10000)
 			;VampireSunlightISMD04.applyCrossFade(2.0)
-			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > ShadowLightLevel.GetValue()	
+			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > BVShadowLL	
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun10)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun09)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun08)
@@ -245,7 +249,7 @@ Event OnUpdate()
 			
 		If (VampirismLevel == 3 && VampireSunDamage.GetValue() == 20000)
 			;VampireSunlightISMD04.applyCrossFade(2.0)
-			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > ShadowLightLevel.GetValue()	
+			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > BVShadowLL	
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun10)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun09)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun08)
@@ -271,7 +275,7 @@ Event OnUpdate()
 			
 		If (VampirismLevel == 2 && VampireSunDamage.GetValue() == 10000)
 			;VampireSunlightISMD04.applyCrossFade(2.0)
-			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > ShadowLightLevel.GetValue()	
+			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > BVShadowLL	
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun10)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun09)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun08)
@@ -295,7 +299,7 @@ Event OnUpdate()
 			
 		if (VampirismLevel == 2 && VampireSunDamage.GetValue() == 20000)
 			;VampireSunlightISMD04.applyCrossFade(2.0)
-			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > ShadowLightLevel.GetValue()	
+			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > BVShadowLL	
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun10)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun09)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun08)
@@ -321,7 +325,7 @@ Event OnUpdate()
 		
 		If (VampirismLevel == 1 && VampireSunDamage.GetValue() == 10000)
 			;VampireSunlightISMD04.applyCrossFade(2.0)
-			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0	&& SunDamageLightLevel > ShadowLightLevel.GetValue()
+			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0	&& SunDamageLightLevel > BVShadowLL
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun10)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun09)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun08)
@@ -345,7 +349,7 @@ Event OnUpdate()
 			
 		If (VampirismLevel == 1 && VampireSunDamage.GetValue() == 20000)
 			;VampireSunlightISMD04.applyCrossFade(2.0)
-			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > ShadowLightLevel.GetValue()	
+			If  Game.IsMovementControlsEnabled() && Game.IsFightingControlsEnabled() && Game.GetPlayer().GetCombatState() == 0  && SunDamageLightLevel > BVShadowLL	
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun10)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun09)
 				Game.GetPlayer().RemoveSpell(VampireBurnInSun08)
@@ -370,7 +374,7 @@ Event OnUpdate()
 			Float PlayerShadeHealth = Game.GetPlayer().GetActorValuePercentage("Health")
 			Float PlayerShadeStamina = Game.GetPlayer().GetActorValuePercentage("Stamina")			
 		
-		If SunDamageLightLevel <= ShadowLightLevel.GetValue() && HowMuchDamage >= 1
+		If SunDamageLightLevel <= BVShadowLL && HowMuchDamage >= 1
 
 				Float ShadeTimeStart = Utility.GetCurrentGameTime()
 				

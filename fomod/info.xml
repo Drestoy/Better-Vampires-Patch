@@ -1,0 +1,16 @@
+<fomod>
+  <Name>Better Vampires 6.6 Light Levels Patch</Name>
+  <Version>1.0.a</Version>
+  <LastKnownVersion>1.0.a</LastKnownVersion>
+  <Id>63690</Id>
+  <Author>DRestoy</Author>
+  
+<Description>
+
+Patch for Better Vampires 6.6 by Brehanin2 that adds a new option to set the maximum light level value considered as shadow, so any other mod that modifies the light levels should be now compatible.
+
+</Description>
+
+  <UpdateWarningEnabled>True</UpdateWarningEnabled>
+  <Website>http://skyrim.nexusmods.com/mods/63690</Website>
+</fomod>
