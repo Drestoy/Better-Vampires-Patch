@@ -1,0 +1,72 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
+  <moduleName>Better Vampires 6.6 Light Levels Patch</moduleName>
+  <installSteps order="Explicit">
+    <installStep name="Installation Options">
+      <optionalFileGroups>
+	  
+        <group name="Required" type="SelectAny">
+          <plugins order="Explicit">
+            <plugin name="Required Scripts">
+              <description>
+                <![CDATA[Install the required scripts for BV Light Levels Patch.]]>
+              </description>
+              <files>
+                <folder source ="Patch scripts" destination="" priority="0"/>
+              </files>
+              <typeDescriptor>
+                  <type name="Required"/>
+              </typeDescriptor>
+            </plugin>
+          </plugins>
+        </group>
+		
+        <group name="Versions" type="SelectExactlyOne">
+          <plugins order="Explicit">
+		  
+		  <plugin name="BV - LLP - Dawnguard">
+              <description><![CDATA[Replacer .esp for BV Dawnguard version.]]></description>
+              <files>
+                <folder source="DG version" destination="" priority="0"/>			  
+              </files>
+              <typeDescriptor>
+                <type name="Optional"/>
+              </typeDescriptor>
+            </plugin>
+			
+		  <plugin name="BV - LLP - Dawnguard - ML">
+              <description><![CDATA[Replacer .esp for BV Dawnguard Master Level version.]]></description>
+              <files>
+                <folder source="DG ML version" destination="" priority="0"/>			  
+              </files>
+              <typeDescriptor>
+                <type name="Optional"/>
+              </typeDescriptor>
+            </plugin>			
+			
+            <plugin name="BV - LLP - No Dawnguard">
+              <description><![CDATA[Replacer .esp for BV NO Dawnguard version.]]></description>
+              <files>
+                <folder source="NO DG version" destination="" priority="0"/>
+              </files>
+              <typeDescriptor>
+                <type name="Optional"/>
+              </typeDescriptor>
+            </plugin>
+
+            <plugin name="BV - LLP - No Dawnguard - ML">
+              <description><![CDATA[Replacer .esp for BV NO Dawnguard Master Level version.]]></description>
+              <files>
+                <folder source="NO DG ML version" destination="" priority="0"/>
+              </files>
+              <typeDescriptor>
+                <type name="Optional"/>
+              </typeDescriptor>
+            </plugin>			
+			
+          </plugins>
+        </group>
+
+      </optionalFileGroups>
+    </installStep>
+  </installSteps>
+</config>
